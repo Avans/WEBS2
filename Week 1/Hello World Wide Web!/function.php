@@ -1,5 +1,6 @@
 <?php
-function hello($name) {
+function hello($name)
+{
     echo "Hello " . $name;
 }
 ?><!DOCTYPE html>
