@@ -1,0 +1,1 @@
+<form method="post">Naam:<input name="naam" /><input type="submit" /></form>
