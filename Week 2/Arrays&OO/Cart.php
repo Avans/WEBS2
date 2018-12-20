@@ -1,4 +1,6 @@
 <?php
+namespace Webshop;
+
 class Cart
 {
     private $items;
@@ -9,5 +11,9 @@ class Cart
     public function add_item ($artnr, $num)
     {
         $this->items[$artnr] += $num;
+    }
+    public function __destruct()
+    {
+        var_dump($this->items);
     }
 }
