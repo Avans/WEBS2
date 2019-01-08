@@ -23,6 +23,11 @@ class Person
     {
         $this->lastName .= ' Jr.';
     }
+
+    public function __wakeup()
+    {
+        $this->firstName = 'Woken ' . $this->firstName;
+    }
 }
 
 ?><pre><?php
@@ -31,4 +36,6 @@ echo $john->fullName;
 
 $son = clone $john;
 echo "\n" . $son->fullName;
+
+echo "\nUnserialized: " . unserialize('O:6:"Person":2:{s:9:"firstName";s:4:"John";s:8:"lastName";s:7:"Doe Jr.";}')->fullName;
     ?></pre>
