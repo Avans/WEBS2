@@ -16,9 +16,9 @@ class HTMLCalendar
     }
 
 
-    public function renderDay($day_number, $day_in_week = 0)
+    public function renderDay($monthDay, $weekDay)
     {
-        switch ($day_in_week) {
+        switch ($weekDay) {
             case 5:
                 echo("<td class='calendar_entry saturday_entry'>");
                 break;
@@ -32,8 +32,8 @@ class HTMLCalendar
                 break;
         }
 
-        if ($day_number > 0) {
-            echo("<div class='entry_date'>$day_number</div>");
+        if ($monthDay > 0) {
+            echo("<div class='entry_date'>$monthDay</div>");
             echo("<div class='entry_line'></div>");
             echo("<div class='entry_line'></div>");
             echo("<div class='entry_line'></div>");
@@ -79,10 +79,10 @@ class HTMLCalendar
         $day_count = 1;
         while ($count < $totalDateEntryCount) {
             if ($offset_at_start > 0) {
-                $this->renderDay(0);
+                $this->renderDay(0, 0);
                 $offset_at_start--;
             } elseif ($day_count > $nr_of_days_in_month) {
-                $this->renderDay(0);
+                $this->renderDay(0, 0);
             } else {
                 $this->renderDay($day_count, $count % $weeklength);
                 $day_count++;
