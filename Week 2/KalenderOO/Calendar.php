@@ -20,7 +20,7 @@ class Calendar
         $viewCalendar->renderStart(date("F Y"));
         $viewCalendar->renderRowStart();
 
-        $offset_at_start = $this->calculateOffsetAtStart($this->current_day_of_month - $this->current_day_of_week, count($dayStrings));
+        $offset_at_start = $this->calculateOffsetAtStart($this->current_day_of_month, $this->current_day_of_week, count($dayStrings));
         $viewCalendar->renderDates($this->nr_of_days_in_month, $offset_at_start);
 
         $viewCalendar->renderCalendarEnd();
@@ -32,12 +32,14 @@ class Calendar
      * @param $weeklength
      * @return int
      */
-    private function calculateOffsetAtStart($starting_entry, $weeklength)
+    private function calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $weeklength)
     {
-        if ($starting_entry < 0) {
-            $offset_at_start = $weeklength + $starting_entry;
+        $offset_at_start = $current_day_of_month - ($current_day_of_week % $weeklength);
+
+        if ($offset_at_start < 0) {
+            $offset_at_start = $weeklength + $offset_at_start;
         } else {
-            $offset_at_start = $weeklength - $starting_entry;
+            $offset_at_start = $weeklength - $offset_at_start;
         }
         return $offset_at_start;
     }
