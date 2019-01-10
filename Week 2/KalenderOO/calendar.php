@@ -12,7 +12,9 @@
 require "HTMLCalendar.php";
 require "Calendar.php";
 
-$calendar = new \Calendar\Calendar(date("t"), date("j"), date("w"));
+
+$month = new \Calendar\Month(date("t"), date("j"), date("w"));
+$calendar = new \Calendar\Calendar(date("F Y"), $month);
 $calendar->render(new \Calendar\HTMLCalendar(array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")));
 
 ?>

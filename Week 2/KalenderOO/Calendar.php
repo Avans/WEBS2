@@ -6,23 +6,20 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
 
 class Calendar
 {
-    private $nr_of_days_in_month;
-    private $current_day_of_month;
-    private $current_day_of_week;
+    private $monthName;
+    private $month;
 
-    public function __construct($nr_of_days_in_month, $current_day_of_month, $current_day_of_week)
+    public function __construct($monthName, Month $month)
     {
-        $this->nr_of_days_in_month = $nr_of_days_in_month;
-        $this->current_day_of_month = $current_day_of_month;
-        $this->current_day_of_week = $current_day_of_week;
+        $this->monthName = $monthName;
+        $this->month = $month;
     }
 
     public function render(HTMLCalendar $viewCalendar)
     {
-        $viewCalendar->renderStart(date("F Y"));
+        $viewCalendar->renderStart($this->monthName);
 
-        $month = new Month($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week);
-        $viewCalendar->renderDates($month);
+        $viewCalendar->renderDates($this->month);
 
         $viewCalendar->renderCalendarEnd();
     }
