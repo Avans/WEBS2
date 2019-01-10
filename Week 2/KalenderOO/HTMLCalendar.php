@@ -108,6 +108,7 @@ class HTMLCalendar
                 $this->renderRowStart();
             }
         }
+        $this->renderRowEnd();
     }
 
 
