@@ -73,11 +73,11 @@ class HTMLCalendar
 
     public function renderDates($nr_of_days_in_month, $offset_at_start, $weeklength)
     {
-        $nr_of_entries = $this->calculateNumberOfDaysInMonth($nr_of_days_in_month, $weeklength, $offset_at_start);
+        $totalDateEntryCount = $this->calculateNumberOfDateEntriesToRender($nr_of_days_in_month, $weeklength, $offset_at_start);
 
         $count = 0;
         $day_count = 1;
-        while ($count < $nr_of_entries) {
+        while ($count < $totalDateEntryCount) {
             if ($offset_at_start > 0) {
                 $this->renderDay(0);
                 $offset_at_start--;
@@ -104,7 +104,7 @@ class HTMLCalendar
      * @param int $offset_at_start
      * @return float|int
      */
-    private function calculateNumberOfDaysInMonth($nr_of_days_in_month, $weeklength, $offset_at_start)
+    private function calculateNumberOfDateEntriesToRender($nr_of_days_in_month, $weeklength, $offset_at_start)
     {
         return $weeklength * round(($offset_at_start + $nr_of_days_in_month) / $weeklength);
     }
