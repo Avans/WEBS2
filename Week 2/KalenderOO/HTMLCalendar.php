@@ -44,16 +44,16 @@ class HTMLCalendar
         echo("</td>");
     }
 
-    public function create_calendar_start($days)
+    public function create_calendar_start($days, $monthTitle)
     {
         echo "<table class = 'calendar'>";
-        $this->create_month_title(count($days));
+        $this->create_month_title(count($days), $monthTitle);
         $this->create_header($days);
     }
 
-    private function create_month_title($weeklength)
+    private function create_month_title($weeklength, $monthTitle)
     {
-        echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . date("F Y") . "</td></tr>");
+        echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . $monthTitle . "</td></tr>");
     }
 
     private function create_header($days)

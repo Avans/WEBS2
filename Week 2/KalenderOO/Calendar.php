@@ -31,7 +31,7 @@ class Calendar
 
         $nr_of_entries = $weeklength * round(($offset_at_start + $this->nr_of_days_in_month) / $weeklength);
 
-        $viewCalendar->create_calendar_start(self::dayStrings);
+        $viewCalendar->create_calendar_start(self::dayStrings, date("F Y"));
         $viewCalendar->create_row_start();
         $count = 0;
         $day_count = 1;
