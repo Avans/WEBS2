@@ -14,7 +14,6 @@ require __DIR__ . DIRECTORY_SEPARATOR . "Calendar.php";
 $calendar = new \Calendar\Calendar(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
 
 try {
-    require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
     $month = new \Calendar\Month(new \DateTime(date("Y-1-1")));
 } catch (\Exception $exception) {
     print $exception->getTraceAsString();

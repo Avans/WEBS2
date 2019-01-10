@@ -2,6 +2,8 @@
 
 namespace Calendar;
 
+require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
+
 
 class Calendar
 {
