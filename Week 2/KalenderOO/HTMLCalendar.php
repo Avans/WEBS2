@@ -5,6 +5,16 @@ namespace Calendar;
 
 class HTMLCalendar
 {
+    private $days;
+    private $weekLength;
+
+    public function __construct($days)
+    {
+        $this->days = $days;
+        $this->weekLength = count($this->days);
+    }
+
+
     public function renderRowStart()
     {
         echo("<tr>");
@@ -41,23 +51,23 @@ class HTMLCalendar
         echo("</td>");
     }
 
-    public function renderStart($days, $monthTitle)
+    public function renderStart($monthTitle)
     {
         echo "<table class='calendar'>";
-        $this->renderMonthName(count($days), $monthTitle);
-        $this->renderDays($days);
+        $this->renderMonthName($monthTitle);
+        $this->renderDays();
     }
 
-    private function renderMonthName($weeklength, $monthTitle)
+    private function renderMonthName($monthTitle)
     {
-        echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . $monthTitle . "</td></tr>");
+        echo("<tr><td colspan='" . $this->weekLength . "' id='calendar_month'>" . $monthTitle . "</td></tr>");
     }
 
-    private function renderDays($days)
+    private function renderDays()
     {
         $this->renderRowStart();
 
-        foreach ($days as $dayName) {
+        foreach ($this->days as $dayName) {
             echo("<th>");
             echo($dayName);
             echo("</th>");
@@ -71,9 +81,9 @@ class HTMLCalendar
         echo "</table>";
     }
 
-    public function renderDates($nr_of_days_in_month, $offset_at_start, $weeklength)
+    public function renderDates($nr_of_days_in_month, $offset_at_start)
     {
-        $totalDateEntryCount = $this->calculateNumberOfDateEntriesToRender($nr_of_days_in_month, $weeklength, $offset_at_start);
+        $totalDateEntryCount = $this->calculateNumberOfDateEntriesToRender($nr_of_days_in_month, $offset_at_start);
 
         $count = 0;
         $day_count = 1;
@@ -84,13 +94,13 @@ class HTMLCalendar
             } elseif ($day_count > $nr_of_days_in_month) {
                 $this->renderDay(0, 0);
             } else {
-                $this->renderDay($day_count, $count % $weeklength);
+                $this->renderDay($day_count, $count % $this->weekLength);
                 $day_count++;
             }
 
             $count++;
 
-            if ($count % $weeklength === 0) {
+            if ($count % $this->weekLength === 0) {
                 $this->renderRowStart();
                 $this->renderRowEnd();
             }
@@ -104,9 +114,9 @@ class HTMLCalendar
      * @param int $offset_at_start
      * @return float|int
      */
-    private function calculateNumberOfDateEntriesToRender($nr_of_days_in_month, $weeklength, $offset_at_start)
+    private function calculateNumberOfDateEntriesToRender($nr_of_days_in_month, $offset_at_start)
     {
-        return $weeklength * round(($offset_at_start + $nr_of_days_in_month) / $weeklength);
+        return $this->weekLength * round(($offset_at_start + $nr_of_days_in_month) / $this->weekLength);
     }
 
 

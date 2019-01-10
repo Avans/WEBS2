@@ -17,13 +17,11 @@ class Calendar
 
     public function render(HTMLCalendar $viewCalendar, $dayStrings)
     {
-        $viewCalendar->renderStart($dayStrings, date("F Y"));
+        $viewCalendar->renderStart(date("F Y"));
         $viewCalendar->renderRowStart();
 
-        $weeklength = count($dayStrings);
-
-        $offset_at_start = $this->calculateOffsetAtStart($this->current_day_of_month, $this->current_day_of_week, $weeklength);
-        $viewCalendar->renderDates($this->nr_of_days_in_month, $offset_at_start, $weeklength);
+        $offset_at_start = $this->calculateOffsetAtStart($this->current_day_of_month, $this->current_day_of_week, count($dayStrings));
+        $viewCalendar->renderDates($this->nr_of_days_in_month, $offset_at_start);
 
         $viewCalendar->renderCalendarEnd();
     }
