@@ -61,7 +61,7 @@ class HTMLCalendar
 
         $day_count = 1;
         while ($count < ($this->widthRenderedCalendarInDays * $month->calculateNumberOfWeeks($this->days))) {
-            if ($month->endOfMonth($day_count)) {
+            if ($month->beyondEndOfMonth($day_count)) {
                 $this->renderEmptyDay();
             } else {
                 $this->renderDay($day_count, $count % $this->widthRenderedCalendarInDays);

@@ -25,7 +25,7 @@ class Month
         return array_search($this->first_weekday_of_month, $days);
     }
 
-    public function endOfMonth($day_count)
+    public function beyondEndOfMonth($day_count)
     {
         return $day_count > $this->nr_of_days_in_month;
     }
