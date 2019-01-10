@@ -71,8 +71,16 @@ class HTMLCalendar
         echo "</table>";
     }
 
-    public function renderDates($nr_of_days_in_month, $weeklength, $offset_at_start)
+    public function renderDates($nr_of_days_in_month, $current_day_of_month, $current_day_of_week, $weeklength)
     {
+        $offset_at_start = $current_day_of_month - ($current_day_of_week % $weeklength);
+
+        if ($offset_at_start < 0) {
+            $offset_at_start = $weeklength + $offset_at_start;
+        } else {
+            $offset_at_start = $weeklength - $offset_at_start;
+        }
+
         $nr_of_entries = $weeklength * round(($offset_at_start + $nr_of_days_in_month) / $weeklength);
 
         $count = 0;
@@ -96,5 +104,6 @@ class HTMLCalendar
             }
         }
     }
+
 
 }
