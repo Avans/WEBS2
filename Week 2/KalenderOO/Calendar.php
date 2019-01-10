@@ -22,9 +22,7 @@ class Calendar
         $viewCalendar->renderStart(self::dayStrings, date("F Y"));
         $viewCalendar->renderRowStart();
 
-        $weeklength = count(self::dayStrings);
-
-        $viewCalendar->renderDates($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week, $weeklength);
+        $viewCalendar->renderDates($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week, count(self::dayStrings));
 
         $viewCalendar->renderCalendarEnd();
     }
