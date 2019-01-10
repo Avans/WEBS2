@@ -15,9 +15,9 @@ class Month
         $this->first_weekday_of_month = $first_weekday_of_month;
     }
 
-    public function calculateOffsetAtEnd($days)
+    public function calculateNumberOfWeeks($days)
     {
-        return $this->calculateOffsetAtStart($days) + $this->nr_of_days_in_month;
+        return round(($this->calculateOffsetAtStart($days) + $this->nr_of_days_in_month) / count($days));
     }
 
     public function calculateOffsetAtStart($days)

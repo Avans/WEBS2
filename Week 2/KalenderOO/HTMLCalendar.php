@@ -55,14 +55,13 @@ class HTMLCalendar
     {
         $this->renderRowStart();
 
-        $offset_at_start = $month->calculateOffsetAtStart($this->days);
-        $count = 0;
+        for ($count = 0; $count < $month->calculateOffsetAtStart($this->days); $count++) {
+            $this->renderEmptyDay();
+        }
+
         $day_count = 1;
-        while ($count < ($this->widthRenderedCalendarInDays * round($month->calculateOffsetAtEnd($this->days) / $this->widthRenderedCalendarInDays))) {
-            if ($offset_at_start > 0) {
-                $this->renderEmptyDay();
-                $offset_at_start--;
-            } elseif ($month->endOfMonth($day_count)) {
+        while ($count < ($this->widthRenderedCalendarInDays * $month->calculateNumberOfWeeks($this->days))) {
+            if ($month->endOfMonth($day_count)) {
                 $this->renderEmptyDay();
             } else {
                 $this->renderDay($day_count, $count % $this->widthRenderedCalendarInDays);
