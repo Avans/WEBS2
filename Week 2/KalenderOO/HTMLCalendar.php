@@ -14,7 +14,7 @@ class HTMLCalendar
         $this->widthRenderedCalendarInDays = count($this->days);
     }
 
-    public function render($monthName, Month $month)
+    public function renderMonth($monthName, Month $month)
     {
         $this->renderStart($monthName);
 
