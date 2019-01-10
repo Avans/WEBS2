@@ -104,8 +104,8 @@ class HTMLCalendar
             $count++;
 
             if ($count % $this->widthRenderedCalendarInDays === 0) {
-                $this->renderRowStart();
                 $this->renderRowEnd();
+                $this->renderRowStart();
             }
         }
     }
