@@ -8,16 +8,20 @@ class Calendar
 {
     const dayStrings = array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
 
+    private $nr_of_days_in_month;
+    private $current_day_of_month;
+    private $current_day_of_week;
+
+    public function __construct($nr_of_days_in_month, $current_day_of_month, $current_day_of_week)
+    {
+        $this->nr_of_days_in_month = $nr_of_days_in_month;
+        $this->current_day_of_month = $current_day_of_month;
+        $this->current_day_of_week = $current_day_of_week;
+    }
+
     public function render()
     {
-
-
-        $nr_of_days_in_month = date("t");
-        $current_day_of_month = date("j");
-        $current_day_of_week = date("w"); // 0 = Sunday, 6 = Saturday
-
-        $offset_at_start = $current_day_of_week - ($current_day_of_month % 7);
-        $nr_of_entries = 0;
+        $offset_at_start = $this->current_day_of_week - ($this->current_day_of_month % 7);
 
         // calculate the offset for the first date line
         if ($offset_at_start < 0) {
@@ -28,7 +32,7 @@ class Calendar
 
         // calculate the number of calendar entries needed for this month
         // including the empty ones needed before and after the actual days
-        $nr_of_entries = 7 * round(($offset_at_start + $nr_of_days_in_month) / 7);
+        $nr_of_entries = 7 * round(($offset_at_start + $this->nr_of_days_in_month) / 7);
 
         // Create the calendar
         create_calendar_start();
@@ -45,7 +49,7 @@ class Calendar
                 create_entry(0);
                 $offset_at_start--;
             } else {
-                if ($day_count <= $nr_of_days_in_month) {
+                if ($day_count <= $this->nr_of_days_in_month) {
                     create_entry($day_count, $count % 7);
                     $day_count++;
                 } else {

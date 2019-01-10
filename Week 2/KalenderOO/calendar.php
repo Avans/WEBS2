@@ -11,7 +11,7 @@
 
 require "Calendar.php";
 
-$calendar = new \Calendar\Calendar();
+$calendar = new \Calendar\Calendar(date("t"), date("j"), date("w"));
 $calendar->render();
 
 ?>
