@@ -7,18 +7,6 @@ namespace Calendar;
 class HTMLCalendar
 {
 
-    public function create_header($days)
-    {
-        $this->create_row_start();
-
-        foreach ($days as $dayName) {
-            echo("<th>");
-            echo($dayName);
-            echo("</th>");
-        }
-
-        $this->create_row_end();
-    }
 
     public function create_row_start()
     {
@@ -30,10 +18,6 @@ class HTMLCalendar
         echo("</tr>");
     }
 
-    public function create_month_title($weeklength)
-    {
-        echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . date("F Y") . "</td></tr>");
-    }
 
     public function create_entry($day_number, $day_in_week = 0)
     {
@@ -60,9 +44,29 @@ class HTMLCalendar
         echo("</td>");
     }
 
-    public function create_calendar_start()
+    public function create_calendar_start($days)
     {
         echo "<table class = 'calendar'>";
+        $this->create_month_title(count($days));
+        $this->create_header($days);
+    }
+
+    private function create_month_title($weeklength)
+    {
+        echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . date("F Y") . "</td></tr>");
+    }
+
+    private function create_header($days)
+    {
+        $this->create_row_start();
+
+        foreach ($days as $dayName) {
+            echo("<th>");
+            echo($dayName);
+            echo("</th>");
+        }
+
+        $this->create_row_end();
     }
 
     public function create_calendar_end()
