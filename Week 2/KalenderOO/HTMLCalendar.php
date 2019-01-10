@@ -23,46 +23,6 @@ class HTMLCalendar
         $this->renderCalendarEnd();
     }
 
-
-
-    private function renderRowStart()
-    {
-        echo("<tr>");
-    }
-
-    private function renderRowEnd()
-    {
-        echo("</tr>");
-    }
-
-
-    private function renderEmptyDay()
-    {
-        echo "<td class='calendar_entry'></td>";
-    }
-    private function renderDay($monthDay, $weekDay)
-    {
-        switch ($weekDay) {
-            case 5:
-                echo("<td class='calendar_entry saturday_entry'>");
-                break;
-
-            case 6:
-                echo("<td class='calendar_entry sunday_entry'>");
-                break;
-
-            default:
-                echo("<td class='calendar_entry'>");
-                break;
-        }
-
-        echo("<div class='entry_date'>$monthDay</div>");
-        echo("<div class='entry_line'></div>");
-        echo("<div class='entry_line'></div>");
-        echo("<div class='entry_line'></div>");
-        echo("</td>");
-    }
-
     private function renderStart($monthTitle)
     {
         echo "<table class='calendar'>";
@@ -88,9 +48,14 @@ class HTMLCalendar
         $this->renderRowEnd();
     }
 
-    private function renderCalendarEnd()
+    private function renderRowStart()
     {
-        echo "</table>";
+        echo("<tr>");
+    }
+
+    private function renderRowEnd()
+    {
+        echo("</tr>");
     }
 
     private function renderDates(Month $month)
@@ -119,6 +84,39 @@ class HTMLCalendar
             }
         }
         $this->renderRowEnd();
+    }
+
+    private function renderEmptyDay()
+    {
+        echo "<td class='calendar_entry'></td>";
+    }
+
+    private function renderDay($monthDay, $weekDay)
+    {
+        switch ($weekDay) {
+            case 5:
+                echo("<td class='calendar_entry saturday_entry'>");
+                break;
+
+            case 6:
+                echo("<td class='calendar_entry sunday_entry'>");
+                break;
+
+            default:
+                echo("<td class='calendar_entry'>");
+                break;
+        }
+
+        echo("<div class='entry_date'>$monthDay</div>");
+        echo("<div class='entry_line'></div>");
+        echo("<div class='entry_line'></div>");
+        echo("<div class='entry_line'></div>");
+        echo("</td>");
+    }
+
+    private function renderCalendarEnd()
+    {
+        echo "</table>";
     }
 
 

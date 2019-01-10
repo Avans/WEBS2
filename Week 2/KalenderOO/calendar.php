@@ -12,7 +12,6 @@
 require __DIR__ . DIRECTORY_SEPARATOR . "HTMLCalendar.php";
 require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
 
-
 $month = new \Calendar\Month(date("t"), date("j"), date("w"));
 $calendar = new \Calendar\HTMLCalendar(array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"));
 $calendar->renderMonth(date("F Y"), $month);

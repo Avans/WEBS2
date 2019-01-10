@@ -17,6 +17,17 @@ class Month
         $this->current_day_of_week = $current_day_of_week;
     }
 
+    /**
+     * @param $nr_of_days_in_month
+     * @param $weeklength
+     * @param int $offset_at_start
+     * @return float|int
+     */
+    public function calculateNumberOfDateEntriesToRender($widthRenderedCalendarInDays)
+    {
+        return $widthRenderedCalendarInDays * round(($this->calculateOffsetAtStart($widthRenderedCalendarInDays) + $this->nr_of_days_in_month) / $widthRenderedCalendarInDays);
+    }
+
     public function calculateOffsetAtStart($widthRenderedCalendarInDays)
     {
         $offset_at_start = $this->current_day_of_month - ($this->current_day_of_week % $widthRenderedCalendarInDays);
@@ -27,17 +38,6 @@ class Month
             $offset_at_start = $widthRenderedCalendarInDays - $offset_at_start;
         }
         return $offset_at_start;
-    }
-
-    /**
-     * @param $nr_of_days_in_month
-     * @param $weeklength
-     * @param int $offset_at_start
-     * @return float|int
-     */
-    public function calculateNumberOfDateEntriesToRender($widthRenderedCalendarInDays)
-    {
-        return $widthRenderedCalendarInDays * round(($this->calculateOffsetAtStart($widthRenderedCalendarInDays) + $this->nr_of_days_in_month) / $widthRenderedCalendarInDays);
     }
 
     public function endOfMonth($day_count)
