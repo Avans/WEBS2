@@ -23,7 +23,7 @@ class Calendar
         $viewCalendar->renderRowStart();
 
         $month = new Month($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week);
-        $viewCalendar->renderDates($this->nr_of_days_in_month, $month);
+        $viewCalendar->renderDates($month);
 
         $viewCalendar->renderCalendarEnd();
     }

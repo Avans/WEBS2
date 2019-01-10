@@ -39,4 +39,9 @@ class Month
     {
         return $widthRenderedCalendarInDays * round(($this->calculateOffsetAtStart($widthRenderedCalendarInDays) + $this->nr_of_days_in_month) / $widthRenderedCalendarInDays);
     }
+
+    public function endOfMonth($day_count)
+    {
+        return $day_count > $this->nr_of_days_in_month;
+    }
 }

@@ -81,7 +81,7 @@ class HTMLCalendar
         echo "</table>";
     }
 
-    public function renderDates($nr_of_days_in_month, Month $month)
+    public function renderDates(Month $month)
     {
         $offset_at_start = $month->calculateOffsetAtStart($this->widthRenderedCalendarInDays);
         $count = 0;
@@ -90,7 +90,7 @@ class HTMLCalendar
             if ($offset_at_start > 0) {
                 $this->renderDay(0, 0);
                 $offset_at_start--;
-            } elseif ($day_count > $nr_of_days_in_month) {
+            } elseif ($month->endOfMonth($day_count)) {
                 $this->renderDay(0, 0);
             } else {
                 $this->renderDay($day_count, $count % $this->widthRenderedCalendarInDays);
