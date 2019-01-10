@@ -4,8 +4,6 @@ namespace Calendar;
 
 class Calendar
 {
-    const dayStrings = array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
-
     private $nr_of_days_in_month;
     private $current_day_of_month;
     private $current_day_of_week;
@@ -17,12 +15,12 @@ class Calendar
         $this->current_day_of_week = $current_day_of_week;
     }
 
-    public function render(HTMLCalendar $viewCalendar)
+    public function render(HTMLCalendar $viewCalendar, $dayStrings)
     {
-        $viewCalendar->renderStart(self::dayStrings, date("F Y"));
+        $viewCalendar->renderStart($dayStrings, date("F Y"));
         $viewCalendar->renderRowStart();
 
-        $weeklength = count(self::dayStrings);
+        $weeklength = count($dayStrings);
 
         $offset_at_start = $this->calculateOffsetAtStart($this->current_day_of_month, $this->current_day_of_week, $weeklength);
         $viewCalendar->renderDates($this->nr_of_days_in_month, $offset_at_start, $weeklength);
