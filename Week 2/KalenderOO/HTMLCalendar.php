@@ -73,13 +73,7 @@ class HTMLCalendar
 
     public function renderDates($nr_of_days_in_month, $current_day_of_month, $current_day_of_week, $weeklength)
     {
-        $offset_at_start = $current_day_of_month - ($current_day_of_week % $weeklength);
-
-        if ($offset_at_start < 0) {
-            $offset_at_start = $weeklength + $offset_at_start;
-        } else {
-            $offset_at_start = $weeklength - $offset_at_start;
-        }
+        $offset_at_start = $this->calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $weeklength);
 
         $nr_of_entries = $weeklength * round(($offset_at_start + $nr_of_days_in_month) / $weeklength);
 
@@ -103,6 +97,24 @@ class HTMLCalendar
                 $this->renderRowEnd();
             }
         }
+    }
+
+    /**
+     * @param $current_day_of_month
+     * @param $current_day_of_week
+     * @param $weeklength
+     * @return int
+     */
+    private function calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $weeklength)
+    {
+        $offset_at_start = $current_day_of_month - ($current_day_of_week % $weeklength);
+
+        if ($offset_at_start < 0) {
+            $offset_at_start = $weeklength + $offset_at_start;
+        } else {
+            $offset_at_start = $weeklength - $offset_at_start;
+        }
+        return $offset_at_start;
     }
 
 
