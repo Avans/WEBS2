@@ -55,10 +55,10 @@ class HTMLCalendar
     {
         $this->renderRowStart();
 
-        $offset_at_start = $month->calculateOffsetAtStart($this->widthRenderedCalendarInDays);
+        $offset_at_start = $month->calculateOffsetAtStart($this->days);
         $count = 0;
         $day_count = 1;
-        while ($count < $month->calculateNumberOfDateEntriesToRender($this->widthRenderedCalendarInDays)) {
+        while ($count < ($this->widthRenderedCalendarInDays * round($month->calculateOffsetAtEnd($this->days) / $this->widthRenderedCalendarInDays))) {
             if ($offset_at_start > 0) {
                 $this->renderEmptyDay();
                 $offset_at_start--;
@@ -105,10 +105,5 @@ class HTMLCalendar
         echo("<div class='entry_line'></div>");
         echo("<div class='entry_line'></div>");
         echo("</td>");
-    }
-
-    public function calculateFirstWeekdayOffset($weekday)
-    {
-        return array_search($weekday, $this->days);
     }
 }

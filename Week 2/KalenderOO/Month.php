@@ -15,20 +15,14 @@ class Month
         $this->first_weekday_of_month = $first_weekday_of_month;
     }
 
-    /**
-     * @param $nr_of_days_in_month
-     * @param $weeklength
-     * @param int $offset_at_start
-     * @return float|int
-     */
-    public function calculateNumberOfDateEntriesToRender($widthRenderedCalendarInDays)
+    public function calculateOffsetAtEnd($days)
     {
-        return $widthRenderedCalendarInDays * round(($this->calculateOffsetAtStart($widthRenderedCalendarInDays) + $this->nr_of_days_in_month) / $widthRenderedCalendarInDays);
+        return $this->calculateOffsetAtStart($days) + $this->nr_of_days_in_month;
     }
 
-    public function calculateOffsetAtStart($widthRenderedCalendarInDays)
+    public function calculateOffsetAtStart($days)
     {
-        return $this->first_weekday_of_month % $widthRenderedCalendarInDays;
+        return array_search($this->first_weekday_of_month, $days);
     }
 
     public function endOfMonth($day_count)

@@ -16,9 +16,7 @@ $calendar = new \Calendar\HTMLCalendar(array("Mon", "Tue", "Wed", "Thu", "Fri", 
 for ($i = 1; $i <= 12; $i++) {
     $monthTime = mktime(0,0,1, $i, 1, date("Y"));
 
-    $firstWeekday = $calendar->calculateFirstWeekdayOffset(date("D", $monthTime));
-
-    $month = new \Calendar\Month(date("t", $monthTime), $firstWeekday);
+    $month = new \Calendar\Month(date("t", $monthTime), date("D", $monthTime));
     $calendar->renderMonth(date("F Y", $monthTime), $month);
 }
 
