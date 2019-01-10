@@ -17,10 +17,6 @@ class Calendar
 
     public function render(HTMLCalendar $viewCalendar)
     {
-        $viewCalendar->renderStart($this->monthName);
-
-        $viewCalendar->renderDates($this->month);
-
-        $viewCalendar->renderCalendarEnd();
+        $viewCalendar->render($this->monthName, $this->month);
     }
 }

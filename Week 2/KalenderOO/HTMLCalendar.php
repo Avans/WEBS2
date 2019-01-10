@@ -14,13 +14,23 @@ class HTMLCalendar
         $this->widthRenderedCalendarInDays = count($this->days);
     }
 
+    public function render($monthName, Month $month)
+    {
+        $this->renderStart($monthName);
 
-    public function renderRowStart()
+        $this->renderDates($month);
+
+        $this->renderCalendarEnd();
+    }
+
+
+
+    private function renderRowStart()
     {
         echo("<tr>");
     }
 
-    public function renderRowEnd()
+    private function renderRowEnd()
     {
         echo("</tr>");
     }
@@ -53,7 +63,7 @@ class HTMLCalendar
         echo("</td>");
     }
 
-    public function renderStart($monthTitle)
+    private function renderStart($monthTitle)
     {
         echo "<table class='calendar'>";
         $this->renderMonthName($monthTitle);
@@ -78,12 +88,12 @@ class HTMLCalendar
         $this->renderRowEnd();
     }
 
-    public function renderCalendarEnd()
+    private function renderCalendarEnd()
     {
         echo "</table>";
     }
 
-    public function renderDates(Month $month)
+    private function renderDates(Month $month)
     {
         $this->renderRowStart();
 
