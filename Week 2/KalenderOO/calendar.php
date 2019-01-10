@@ -9,10 +9,11 @@
 
 <?php
 
+require "HTMLCalendar.php";
 require "Calendar.php";
 
 $calendar = new \Calendar\Calendar(date("t"), date("j"), date("w"));
-$calendar->render();
+$calendar->render(new \Calendar\HTMLCalendar());
 
 ?>
 </html>
