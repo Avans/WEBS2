@@ -32,28 +32,8 @@ class Calendar
             $offset_at_start = $weeklength - $offset_at_start;
         }
 
-        $nr_of_entries = $weeklength * round(($offset_at_start + $this->nr_of_days_in_month) / $weeklength);
+        $viewCalendar->renderDates($this->nr_of_days_in_month, $weeklength, $offset_at_start);
 
-        $count = 0;
-        $day_count = 1;
-        while ($count < $nr_of_entries) {
-            if ($offset_at_start > 0) {
-                $viewCalendar->renderDay(0);
-                $offset_at_start--;
-            } elseif ($day_count <= $this->nr_of_days_in_month) {
-                $viewCalendar->renderDay($day_count, $count % $weeklength);
-                $day_count++;
-            } else {
-                $viewCalendar->renderDay(0);
-            }
-
-            $count++;
-
-            if ($count % $weeklength === 0) {
-                $viewCalendar->renderRowStart();
-                $viewCalendar->renderRowEnd();
-            }
-        }
         $viewCalendar->renderCalendarEnd();
     }
 }
