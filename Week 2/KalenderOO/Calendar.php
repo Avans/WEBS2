@@ -19,23 +19,24 @@ class Calendar
 
     public function render()
     {
+        $weeklength = count(self::dayStrings);
         $offset_at_start = $this->current_day_of_week - ($this->current_day_of_month % 7);
 
         // calculate the offset for the first date line
         if ($offset_at_start < 0) {
-            $offset_at_start = 7 + $offset_at_start;
+            $offset_at_start = $weeklength + $offset_at_start;
         } else {
-            $offset_at_start = 7 - $offset_at_start;
+            $offset_at_start = $weeklength - $offset_at_start;
         }
 
         // calculate the number of calendar entries needed for this month
         // including the empty ones needed before and after the actual days
-        $nr_of_entries = 7 * round(($offset_at_start + $this->nr_of_days_in_month) / 7);
+        $nr_of_entries = $weeklength * round(($offset_at_start + $this->nr_of_days_in_month) / $weeklength);
 
         // Create the calendar
         $this->create_calendar_start();
         // Start with month indication
-        $this->create_month_title();
+        $this->create_month_title($weeklength);
         // Start filling the table with a header
         $this->create_header();
         // Now do the days, both empty and with date
@@ -47,7 +48,7 @@ class Calendar
                 $this->create_entry(0);
                 $offset_at_start--;
             } elseif ($day_count <= $this->nr_of_days_in_month) {
-                $this->create_entry($day_count, $count % 7);
+                $this->create_entry($day_count, $count % $weeklength);
                 $day_count++;
             } else {
                 $this->create_entry(0);
@@ -55,7 +56,7 @@ class Calendar
 
             $count++;
 
-            if ($count % 7 === 0) {
+            if ($count % $weeklength === 0) {
                 $this->create_row_start();
                 $this->create_row_end();
             }
@@ -87,9 +88,9 @@ class Calendar
         echo("</tr>");
     }
 
-    private function create_month_title()
+    private function create_month_title($weeklength)
     {
-        echo("<tr><td colspan='7' id='calendar_month'>" . date("F Y") . "</td></tr>");
+        echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . date("F Y") . "</td></tr>");
     }
 
     private function create_entry($day_number, $day_in_week = 0)
