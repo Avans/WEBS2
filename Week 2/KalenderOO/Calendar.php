@@ -34,12 +34,10 @@ class Calendar
      */
     private function calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $weeklength)
     {
-        $offset_at_start = $current_day_of_month - ($current_day_of_week % $weeklength);
-
-        if ($offset_at_start < 0) {
-            $offset_at_start = $weeklength + $offset_at_start;
+        if ($current_day_of_month < ($current_day_of_week % $weeklength)) {
+            $offset_at_start = $weeklength + ($current_day_of_month - ($current_day_of_week % $weeklength));
         } else {
-            $offset_at_start = $weeklength - $offset_at_start;
+            $offset_at_start = $weeklength - ($current_day_of_month - ($current_day_of_week % $weeklength));
         }
         return $offset_at_start;
     }
