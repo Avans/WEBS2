@@ -25,18 +25,18 @@ class HTMLCalendar
         }, $days);
     }
 
-    public function renderMonth($monthName, Month $month)
+    public function renderMonth(Month $month)
     {
         echo "<table class='calendar'>";
-        $this->renderMonthName($monthName);
+        $this->renderMonthName($month);
         $this->renderWeekDays();
         $this->renderDates($month);
         echo "</table>";
     }
 
-    private function renderMonthName($monthName)
+    private function renderMonthName(Month $month)
     {
-        echo("<tr><td colspan='" . $this->widthRenderedCalendarInDays . "' id='calendar_month'>" . $monthName . "</td></tr>");
+        echo("<tr><td colspan='" . $this->widthRenderedCalendarInDays . "' id='calendar_month'>" . $month->formatLabel() . "</td></tr>");
     }
 
     private function renderWeekDays()

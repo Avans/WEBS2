@@ -13,11 +13,10 @@ require __DIR__ . DIRECTORY_SEPARATOR . "HTMLCalendar.php";
 require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
 
 $calendar = new \Calendar\HTMLCalendar(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
+$month = new \Calendar\Month(new \DateTime(date("Y-1-1")));
 for ($i = 1; $i <= 12; $i++) {
-    $monthTime = mktime(0,0,1, $i, 1, date("Y"));
-
-    $month = new \Calendar\Month(date("t", $monthTime), date("D", $monthTime));
-    $calendar->renderMonth(date("F Y", $monthTime), $month);
+    $calendar->renderMonth($month);
+    $month = $month->next();
 }
 
 ?>
