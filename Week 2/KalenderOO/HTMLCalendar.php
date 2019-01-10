@@ -16,26 +16,19 @@ class HTMLCalendar
 
     public function renderMonth($monthName, Month $month)
     {
-        $this->renderStart($monthName);
-
-        $this->renderDates($month);
-
-        $this->renderCalendarEnd();
-    }
-
-    private function renderStart($monthTitle)
-    {
         echo "<table class='calendar'>";
-        $this->renderMonthName($monthTitle);
-        $this->renderDays();
+        $this->renderMonthName($monthName);
+        $this->renderWeekDays();
+        $this->renderDates($month);
+        echo "</table>";
     }
 
-    private function renderMonthName($monthTitle)
+    private function renderMonthName($monthName)
     {
-        echo("<tr><td colspan='" . $this->widthRenderedCalendarInDays . "' id='calendar_month'>" . $monthTitle . "</td></tr>");
+        echo("<tr><td colspan='" . $this->widthRenderedCalendarInDays . "' id='calendar_month'>" . $monthName . "</td></tr>");
     }
 
-    private function renderDays()
+    private function renderWeekDays()
     {
         $this->renderRowStart();
 
@@ -113,11 +106,4 @@ class HTMLCalendar
         echo("<div class='entry_line'></div>");
         echo("</td>");
     }
-
-    private function renderCalendarEnd()
-    {
-        echo "</table>";
-    }
-
-
 }
