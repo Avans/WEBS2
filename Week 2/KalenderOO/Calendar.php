@@ -20,7 +20,6 @@ class Calendar
     public function render(HTMLCalendar $viewCalendar, $dayStrings)
     {
         $viewCalendar->renderStart(date("F Y"));
-        $viewCalendar->renderRowStart();
 
         $month = new Month($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week);
         $viewCalendar->renderDates($month);

@@ -85,6 +85,8 @@ class HTMLCalendar
 
     public function renderDates(Month $month)
     {
+        $this->renderRowStart();
+
         $offset_at_start = $month->calculateOffsetAtStart($this->widthRenderedCalendarInDays);
         $count = 0;
         $day_count = 1;
