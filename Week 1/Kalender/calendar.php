@@ -9,7 +9,7 @@
 
 <?php
 
-require __DIR__ . 'functions.php';
+require __DIR__ . DIRECTORY_SEPARATOR . 'functions.php';
 
 const dayStrings = array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun");
 
