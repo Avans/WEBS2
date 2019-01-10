@@ -46,13 +46,11 @@ class Calendar
             if ($offset_at_start > 0) {
                 $this->create_entry(0);
                 $offset_at_start--;
+            } elseif ($day_count <= $this->nr_of_days_in_month) {
+                $this->create_entry($day_count, $count % 7);
+                $day_count++;
             } else {
-                if ($day_count <= $this->nr_of_days_in_month) {
-                    $this->create_entry($day_count, $count % 7);
-                    $day_count++;
-                } else {
-                    $this->create_entry(0);
-                }
+                $this->create_entry(0);
             }
 
             $count++;
