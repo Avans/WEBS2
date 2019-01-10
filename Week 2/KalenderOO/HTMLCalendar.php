@@ -26,6 +26,10 @@ class HTMLCalendar
     }
 
 
+    public function renderEmptyDay()
+    {
+        $this->renderDay(0,0);
+    }
     public function renderDay($monthDay, $weekDay)
     {
         switch ($weekDay) {
@@ -88,10 +92,10 @@ class HTMLCalendar
         $day_count = 1;
         while ($count < $month->calculateNumberOfDateEntriesToRender($this->widthRenderedCalendarInDays)) {
             if ($offset_at_start > 0) {
-                $this->renderDay(0, 0);
+                $this->renderEmptyDay();
                 $offset_at_start--;
             } elseif ($month->endOfMonth($day_count)) {
-                $this->renderDay(0, 0);
+                $this->renderEmptyDay();
             } else {
                 $this->renderDay($day_count, $count % $this->widthRenderedCalendarInDays);
                 $day_count++;
