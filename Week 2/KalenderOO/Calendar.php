@@ -19,8 +19,11 @@ class Calendar
 
     public function render(HTMLCalendar $viewCalendar)
     {
+        $viewCalendar->renderStart(self::dayStrings, date("F Y"));
+        $viewCalendar->renderRowStart();
+
         $weeklength = count(self::dayStrings);
-        $offset_at_start = $this->current_day_of_week - ($this->current_day_of_month % 7);
+        $offset_at_start = $this->current_day_of_week - ($this->current_day_of_month % $weeklength);
 
         // calculate the offset for the first date line
         if ($offset_at_start < 0) {
@@ -31,8 +34,6 @@ class Calendar
 
         $nr_of_entries = $weeklength * round(($offset_at_start + $this->nr_of_days_in_month) / $weeklength);
 
-        $viewCalendar->renderStart(self::dayStrings, date("F Y"));
-        $viewCalendar->renderRowStart();
         $count = 0;
         $day_count = 1;
         while ($count < $nr_of_entries) {
