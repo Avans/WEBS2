@@ -26,11 +26,11 @@ class HTMLCalendar
     }
 
 
-    public function renderEmptyDay()
+    private function renderEmptyDay()
     {
-        $this->renderDay(0,0);
+        echo "<td class='calendar_entry'></td>";
     }
-    public function renderDay($monthDay, $weekDay)
+    private function renderDay($monthDay, $weekDay)
     {
         switch ($weekDay) {
             case 5:
@@ -46,12 +46,10 @@ class HTMLCalendar
                 break;
         }
 
-        if ($monthDay > 0) {
-            echo("<div class='entry_date'>$monthDay</div>");
-            echo("<div class='entry_line'></div>");
-            echo("<div class='entry_line'></div>");
-            echo("<div class='entry_line'></div>");
-        }
+        echo("<div class='entry_date'>$monthDay</div>");
+        echo("<div class='entry_line'></div>");
+        echo("<div class='entry_line'></div>");
+        echo("<div class='entry_line'></div>");
         echo("</td>");
     }
 
