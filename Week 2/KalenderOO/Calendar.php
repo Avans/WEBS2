@@ -31,28 +31,28 @@ class Calendar
 
         $nr_of_entries = $weeklength * round(($offset_at_start + $this->nr_of_days_in_month) / $weeklength);
 
-        $viewCalendar->create_calendar_start(self::dayStrings, date("F Y"));
-        $viewCalendar->create_row_start();
+        $viewCalendar->renderStart(self::dayStrings, date("F Y"));
+        $viewCalendar->renderRowStart();
         $count = 0;
         $day_count = 1;
         while ($count < $nr_of_entries) {
             if ($offset_at_start > 0) {
-                $viewCalendar->create_entry(0);
+                $viewCalendar->renderDay(0);
                 $offset_at_start--;
             } elseif ($day_count <= $this->nr_of_days_in_month) {
-                $viewCalendar->create_entry($day_count, $count % $weeklength);
+                $viewCalendar->renderDay($day_count, $count % $weeklength);
                 $day_count++;
             } else {
-                $viewCalendar->create_entry(0);
+                $viewCalendar->renderDay(0);
             }
 
             $count++;
 
             if ($count % $weeklength === 0) {
-                $viewCalendar->create_row_start();
-                $viewCalendar->create_row_end();
+                $viewCalendar->renderRowStart();
+                $viewCalendar->renderRowEnd();
             }
         }
-        $viewCalendar->create_calendar_end();
+        $viewCalendar->renderCalendarEnd();
     }
 }

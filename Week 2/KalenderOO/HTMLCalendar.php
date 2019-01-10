@@ -8,18 +8,18 @@ class HTMLCalendar
 {
 
 
-    public function create_row_start()
+    public function renderRowStart()
     {
         echo("<tr>");
     }
 
-    public function create_row_end()
+    public function renderRowEnd()
     {
         echo("</tr>");
     }
 
 
-    public function create_entry($day_number, $day_in_week = 0)
+    public function renderDay($day_number, $day_in_week = 0)
     {
         switch ($day_in_week) {
             case 5:
@@ -44,21 +44,21 @@ class HTMLCalendar
         echo("</td>");
     }
 
-    public function create_calendar_start($days, $monthTitle)
+    public function renderStart($days, $monthTitle)
     {
         echo "<table class = 'calendar'>";
-        $this->create_month_title(count($days), $monthTitle);
-        $this->create_header($days);
+        $this->renderMonthName(count($days), $monthTitle);
+        $this->renderDays($days);
     }
 
-    private function create_month_title($weeklength, $monthTitle)
+    private function renderMonthName($weeklength, $monthTitle)
     {
         echo("<tr><td colspan='" . $weeklength . "' id='calendar_month'>" . $monthTitle . "</td></tr>");
     }
 
-    private function create_header($days)
+    private function renderDays($days)
     {
-        $this->create_row_start();
+        $this->renderRowStart();
 
         foreach ($days as $dayName) {
             echo("<th>");
@@ -66,10 +66,10 @@ class HTMLCalendar
             echo("</th>");
         }
 
-        $this->create_row_end();
+        $this->renderRowEnd();
     }
 
-    public function create_calendar_end()
+    public function renderCalendarEnd()
     {
         echo "</table>";
     }
