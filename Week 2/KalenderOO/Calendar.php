@@ -2,6 +2,8 @@
 
 namespace Calendar;
 
+require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
+
 class Calendar
 {
     private $nr_of_days_in_month;
@@ -20,7 +22,8 @@ class Calendar
         $viewCalendar->renderStart(date("F Y"));
         $viewCalendar->renderRowStart();
 
-        $viewCalendar->renderDates($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week);
+        $month = new Month($this->nr_of_days_in_month, $this->current_day_of_month, $this->current_day_of_week);
+        $viewCalendar->renderDates($this->nr_of_days_in_month, $month);
 
         $viewCalendar->renderCalendarEnd();
     }
