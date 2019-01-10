@@ -17,7 +17,7 @@ class Calendar
         $this->current_day_of_week = $current_day_of_week;
     }
 
-    public function render(HTMLCalendar $viewCalendar, $dayStrings)
+    public function render(HTMLCalendar $viewCalendar)
     {
         $viewCalendar->renderStart(date("F Y"));
 
