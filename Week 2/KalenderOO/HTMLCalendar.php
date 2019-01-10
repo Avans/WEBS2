@@ -6,12 +6,23 @@ namespace Calendar;
 class HTMLCalendar
 {
     private $days;
+    private $calenderEntryWeekdayClasses;
     private $widthRenderedCalendarInDays;
 
     public function __construct($days)
     {
         $this->days = $days;
-        $this->widthRenderedCalendarInDays = count($this->days);
+        $this->widthRenderedCalendarInDays = count($days);
+        $this->calenderEntryWeekdayClasses = array_map(function($dayName){
+            switch ($dayName) {
+                case "Sat":
+                    return "saturday_entry";
+                case "Sun":
+                    return "sunday_entry";
+                default:
+                    return "";
+            }
+        }, $days);
     }
 
     public function renderMonth($monthName, Month $month)
@@ -32,9 +43,9 @@ class HTMLCalendar
     {
         $this->renderRowStart();
 
-        foreach ($this->days as $dayName) {
+        foreach ($this->days as $day) {
             echo("<th>");
-            echo($dayName);
+            echo($day);
             echo("</th>");
         }
 
@@ -85,20 +96,7 @@ class HTMLCalendar
 
     private function renderDay($monthDay, $weekDay)
     {
-        switch ($weekDay) {
-            case 5:
-                echo("<td class='calendar_entry saturday_entry'>");
-                break;
-
-            case 6:
-                echo("<td class='calendar_entry sunday_entry'>");
-                break;
-
-            default:
-                echo("<td class='calendar_entry'>");
-                break;
-        }
-
+        echo("<td class='calendar_entry " . $this->calenderEntryWeekdayClasses[$weekDay] . "'>");
         echo("<div class='entry_date'>$monthDay</div>");
         echo("<div class='entry_line'></div>");
         echo("<div class='entry_line'></div>");
