@@ -29,17 +29,11 @@ class Calendar
             $offset_at_start = $weeklength - $offset_at_start;
         }
 
-        // calculate the number of calendar entries needed for this month
-        // including the empty ones needed before and after the actual days
         $nr_of_entries = $weeklength * round(($offset_at_start + $this->nr_of_days_in_month) / $weeklength);
 
-        // Create the calendar
         $viewCalendar->create_calendar_start();
-        // Start with month indication
         $viewCalendar->create_month_title($weeklength);
-        // Start filling the table with a header
         $viewCalendar->create_header(self::dayStrings);
-        // Now do the days, both empty and with date
         $viewCalendar->create_row_start();
         $count = 0;
         $day_count = 1;
@@ -61,7 +55,6 @@ class Calendar
                 $viewCalendar->create_row_end();
             }
         }
-
         $viewCalendar->create_calendar_end();
     }
 }
