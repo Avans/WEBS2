@@ -75,7 +75,7 @@ class HTMLCalendar
     {
         $offset_at_start = $this->calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $weeklength);
 
-        $nr_of_entries = $weeklength * round(($offset_at_start + $nr_of_days_in_month) / $weeklength);
+        $nr_of_entries = $this->calculateNumberOfDaysInMonth($nr_of_days_in_month, $weeklength, $offset_at_start);
 
         $count = 0;
         $day_count = 1;
@@ -115,6 +115,17 @@ class HTMLCalendar
             $offset_at_start = $weeklength - $offset_at_start;
         }
         return $offset_at_start;
+    }
+
+    /**
+     * @param $nr_of_days_in_month
+     * @param $weeklength
+     * @param int $offset_at_start
+     * @return float|int
+     */
+    private function calculateNumberOfDaysInMonth($nr_of_days_in_month, $weeklength, $offset_at_start)
+    {
+        return $weeklength * round(($offset_at_start + $nr_of_days_in_month) / $weeklength);
     }
 
 
