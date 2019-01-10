@@ -35,38 +35,99 @@ class Calendar
         $nr_of_entries = 7 * round(($offset_at_start + $this->nr_of_days_in_month) / 7);
 
         // Create the calendar
-        create_calendar_start();
+        $this->create_calendar_start();
         // Start with month indication
-        create_month_title();
+        $this->create_month_title();
         // Start filling the table with a header
-        create_header();
+        $this->create_header();
         // Now do the days, both empty and with date
-        create_row_start();
+        $this->create_row_start();
         $count = 0;
         $day_count = 1;
         while ($count < $nr_of_entries) {
             if ($offset_at_start > 0) {
-                create_entry(0);
+                $this->create_entry(0);
                 $offset_at_start--;
             } else {
                 if ($day_count <= $this->nr_of_days_in_month) {
-                    create_entry($day_count, $count % 7);
+                    $this->create_entry($day_count, $count % 7);
                     $day_count++;
                 } else {
-                    create_entry(0);
+                    $this->create_entry(0);
                 }
             }
 
             $count++;
 
             if ($count % 7 === 0) {
-                create_row_start();
-                create_row_end();
+                $this->create_row_start();
+                $this->create_row_end();
             }
         }
 
-        create_calendar_end();
-        // And we're done.
+        $this->create_calendar_end();
     }
 
+    private function create_header()
+    {
+        $this->create_row_start();
+
+        foreach (self::dayStrings as $dayName) {
+            echo("<th>");
+            echo($dayName);
+            echo("</th>");
+        }
+
+        $this->create_row_end();
+    }
+
+    private function create_row_start()
+    {
+        echo("<tr>");
+    }
+
+    private function create_row_end()
+    {
+        echo("</tr>");
+    }
+
+    private function create_month_title()
+    {
+        echo("<tr><td colspan='7' id='calendar_month'>" . date("F Y") . "</td></tr>");
+    }
+
+    private function create_entry($day_number, $day_in_week = 0)
+    {
+        switch ($day_in_week) {
+            case 5:
+                echo("<td class = 'calendar_entry saturday_entry'>");
+                break;
+
+            case 6:
+                echo("<td class = 'calendar_entry sunday_entry'>");
+                break;
+
+            default:
+                echo("<td class = 'calendar_entry'>");
+                break;
+        }
+
+        if ($day_number > 0) {
+            echo("<div class = 'entry_date'>$day_number</div>");
+            echo("<div class = 'entry_line'></div>");
+            echo("<div class = 'entry_line'></div>");
+            echo("<div class = 'entry_line'></div>");
+        }
+        echo("</td>");
+    }
+
+    private function create_calendar_start()
+    {
+        echo "<table class = 'calendar'>";
+    }
+
+    private function create_calendar_end()
+    {
+        echo "</table>";
+    }
 }
