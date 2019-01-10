@@ -106,4 +106,9 @@ class HTMLCalendar
         echo("<div class='entry_line'></div>");
         echo("</td>");
     }
+
+    public function calculateFirstWeekdayOffset($weekday)
+    {
+        return array_search($weekday, $this->days);
+    }
 }

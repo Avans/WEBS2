@@ -13,8 +13,14 @@ require __DIR__ . DIRECTORY_SEPARATOR . "HTMLCalendar.php";
 require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
 
 $calendar = new \Calendar\HTMLCalendar(array("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"));
-$month = new \Calendar\Month(date("t"), date("j"), date("w"));
-$calendar->renderMonth(date("F Y"), $month);
+for ($i = 1; $i <= 12; $i++) {
+    $monthTime = mktime(0,0,1, $i, 1, date("Y"));
+
+    $firstWeekday = $calendar->calculateFirstWeekdayOffset(date("D", $monthTime));
+
+    $month = new \Calendar\Month(date("t", $monthTime), $firstWeekday);
+    $calendar->renderMonth(date("F Y", $monthTime), $month);
+}
 
 ?>
 </html>
