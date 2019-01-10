@@ -29,17 +29,17 @@ class Calendar
     /**
      * @param $current_day_of_month
      * @param $current_day_of_week
-     * @param $weeklength
+     * @param $widthRenderedCalendarInDays
      * @return int
      */
-    private function calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $weeklength)
+    private function calculateOffsetAtStart($current_day_of_month, $current_day_of_week, $widthRenderedCalendarInDays)
     {
-        $offset_at_start = $current_day_of_month - ($current_day_of_week % $weeklength);
+        $offset_at_start = $current_day_of_month - ($current_day_of_week % $widthRenderedCalendarInDays);
 
         if ($offset_at_start < 0) {
-            $offset_at_start = $weeklength + $offset_at_start;
+            $offset_at_start = $widthRenderedCalendarInDays + $offset_at_start;
         } else {
-            $offset_at_start = $weeklength - $offset_at_start;
+            $offset_at_start = $widthRenderedCalendarInDays - $offset_at_start;
         }
         return $offset_at_start;
     }
