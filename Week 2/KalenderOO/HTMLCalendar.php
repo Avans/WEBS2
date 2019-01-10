@@ -81,11 +81,11 @@ class HTMLCalendar
             if ($offset_at_start > 0) {
                 $this->renderDay(0);
                 $offset_at_start--;
-            } elseif ($day_count <= $nr_of_days_in_month) {
+            } elseif ($day_count > $nr_of_days_in_month) {
+                $this->renderDay(0);
+            } else {
                 $this->renderDay($day_count, $count % $weeklength);
                 $day_count++;
-            } else {
-                $this->renderDay(0);
             }
 
             $count++;
