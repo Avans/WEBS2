@@ -3,7 +3,7 @@
 namespace Calendar;
 
 
-class HTMLCalendar
+class Calendar
 {
     private $days;
     private $calenderEntryWeekdayClasses;

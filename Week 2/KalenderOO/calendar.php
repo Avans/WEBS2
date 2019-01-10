@@ -9,10 +9,10 @@
 
 <?php
 
-require __DIR__ . DIRECTORY_SEPARATOR . "HTMLCalendar.php";
+require __DIR__ . DIRECTORY_SEPARATOR;
 require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
 
-$calendar = new \Calendar\HTMLCalendar(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
+$calendar = new \Calendar\Calendar(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
 $month = new \Calendar\Month(new \DateTime(date("Y-1-1")));
 for ($i = 1; $i <= 12; $i++) {
     $calendar->renderMonth($month);
