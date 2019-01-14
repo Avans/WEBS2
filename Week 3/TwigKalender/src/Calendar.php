@@ -32,12 +32,9 @@ class Calendar
 
     public function renderMonth()
     {
-
-        echo "<table class='calendar'>";
         $this->renderMonthName($this->month);
         $this->renderWeekDays();
         $this->renderDates($this->month);
-        echo "</table>";
         $this->month = $this->month->next();
     }
 
