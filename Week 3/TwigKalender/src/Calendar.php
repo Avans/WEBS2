@@ -7,12 +7,15 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'Month.php';
 
 class Calendar
 {
+    private $date;
     private $days;
     private $calenderEntryWeekdayClasses;
     private $widthRenderedCalendarInDays;
 
-    public function __construct($days)
+    public function __construct(\DateTime $date, $days)
     {
+        $this->month = new \Calendar\Month($date);
+
         $this->days = $days;
         $this->widthRenderedCalendarInDays = count($days);
         $this->calenderEntryWeekdayClasses = array_map(function($dayName){
@@ -27,13 +30,15 @@ class Calendar
         }, $days);
     }
 
-    public function renderMonth(Month $month)
+    public function renderMonth()
     {
+
         echo "<table class='calendar'>";
-        $this->renderMonthName($month);
+        $this->renderMonthName($this->month);
         $this->renderWeekDays();
-        $this->renderDates($month);
+        $this->renderDates($this->month);
         echo "</table>";
+        $this->month = $this->month->next();
     }
 
     private function renderMonthName(Month $month)
