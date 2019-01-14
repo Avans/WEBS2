@@ -8,11 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/css/calendar_style.css">
 </head>
 <body>
-<?php
-for ($month_count = 1; $month_count <= 12; $month_count++) {
-    $calendar->renderMonth($month);
-    $month = $month->next();
-}
-?>
+@yield('content')
 </body>
 </html>
