@@ -30,7 +30,7 @@ class Calendar
         }, $days);
     }
 
-    public function renderMonth()
+    public function shiftMonth()
     {
         $this->month = $this->month->next();
     }

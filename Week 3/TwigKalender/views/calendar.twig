@@ -9,6 +9,7 @@
 </head>
 
 {% for month in 0..11 %}
-{% include('month.twig') %}
+    {% include('month.twig') %}
+    {{ calendar.shiftMonth }}
 {% endfor %}
 </html>
