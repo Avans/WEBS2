@@ -1,3 +1,10 @@
 <table class="calendar">
+    <tr><td colspan="{{ calendar.widthRenderedCalendarInDays }}" id="calendar_month">{{ calendar.renderMonthName }}</td></tr>
+    <tr>
+        {%  for day in days %}
+            <th>{{ day }}</th>
+        {%  endfor %}
+        {{ calendar.renderWeekDays }}
+    </tr>
     {{ calendar.renderMonth }}
 </table>

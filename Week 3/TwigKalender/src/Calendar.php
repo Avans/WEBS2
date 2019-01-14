@@ -10,7 +10,7 @@ class Calendar
     private $date;
     private $days;
     private $calenderEntryWeekdayClasses;
-    private $widthRenderedCalendarInDays;
+    public $widthRenderedCalendarInDays;
 
     public function __construct(\DateTime $date, $days)
     {
@@ -32,28 +32,13 @@ class Calendar
 
     public function renderMonth()
     {
-        $this->renderMonthName($this->month);
-        $this->renderWeekDays();
         $this->renderDates($this->month);
         $this->month = $this->month->next();
     }
 
-    private function renderMonthName(Month $month)
+    public function renderMonthName()
     {
-        echo("<tr><td colspan='" . $this->widthRenderedCalendarInDays . "' id='calendar_month'>" . $month->formatLabel() . "</td></tr>");
-    }
-
-    private function renderWeekDays()
-    {
-        $this->renderRowStart();
-
-        foreach ($this->days as $day) {
-            echo("<th>");
-            echo($day);
-            echo("</th>");
-        }
-
-        $this->renderRowEnd();
+        return $this->month->formatLabel();
     }
 
     private function renderRowStart()
