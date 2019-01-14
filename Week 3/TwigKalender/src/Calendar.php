@@ -50,14 +50,14 @@ class Calendar
         echo("</tr>");
     }
 
+    public function calculateOffsetAtStart() {
+        return $this->month->calculateOffsetAtStart($this->days);
+    }
+
     public function renderDates()
     {
-        for ($count = 0; $count < $this->month->calculateOffsetAtStart($this->days); $count++) {
-            $this->renderEmptyDay();
-        }
-
         $day_count = 1;
-        while ($count < ($this->widthRenderedCalendarInDays * $this->month->calculateNumberOfWeeks($this->days))) {
+        for ($count = $this->calculateOffsetAtStart(); $count < ($this->widthRenderedCalendarInDays * $this->month->calculateNumberOfWeeks($this->days));) {
             if ($this->month->beyondEndOfMonth($day_count)) {
                 $this->renderEmptyDay();
             } else {

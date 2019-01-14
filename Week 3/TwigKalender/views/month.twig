@@ -6,5 +6,10 @@
         {%  endfor %}
         {{ calendar.renderWeekDays }}
     </tr>
-    <tr>{{ calendar.renderDates }}</tr>
+    <tr>
+        {%  for count in 1..calendar.calculateOffsetAtStart %}
+            {% include('emptyday.twig') %}
+        {% endfor %}
+        {{ calendar.renderDates }}
+    </tr>
 </table>
