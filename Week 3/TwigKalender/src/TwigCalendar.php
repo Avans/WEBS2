@@ -3,7 +3,10 @@
 
 namespace Calendar;
 
-
+/**
+ * Class TwigCalendar, used as an abstraction layer between Twig-template and calendar objects
+ * @package Calendar
+ */
 class TwigCalendar
 {
 
