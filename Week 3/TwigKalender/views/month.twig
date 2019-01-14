@@ -1,5 +1,5 @@
 <table class="calendar">
-    <tr><td colspan="{{ calendar.widthRenderedCalendarInDays }}" id="calendar_month">{{ calendar.renderMonthName }}</td></tr>
+    <tr><td colspan="{{ days|length }}" id="calendar_month">{{ calendar.renderMonthName }}</td></tr>
     <tr>
         {%  for day in days %}
             <th>{{ day }}</th>
@@ -7,9 +7,16 @@
         {{ calendar.renderWeekDays }}
     </tr>
     <tr>
-        {%  for count in 1..calendar.calculateOffsetAtStart %}
-            {% include('emptyday.twig') %}
+        {% set dates = calendar.dates %}
+        {% for curdate in dates%}
+            {% if curdate == 'empty' %}
+                {% include('emptyday.twig') %}
+            {% else %}
+                {% if curdate.weekday == 0 %}
+    </tr><tr>
+                {% endif  %}
+                {% include 'date.twig' with curdate only %}
+            {% endif %}
         {% endfor %}
-        {{ calendar.renderDates }}
     </tr>
 </table>
