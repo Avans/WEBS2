@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'RootController@show');
+
+Route::group(["prefix" => "calendar"], function() {
+    Route::redirect('/', 'year');
+    Route::get('/year/{year?}', 'CalendarController@showYear');
+    Route::get('/month/{id}', 'CalendarController@showMonth');
 });
 
-Route::get('/calendar', function () {
-    return view('calendar');
-});
