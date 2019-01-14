@@ -32,7 +32,6 @@ class Calendar
 
     public function renderMonth()
     {
-        $this->renderDates($this->month);
         $this->month = $this->month->next();
     }
 
@@ -51,17 +50,15 @@ class Calendar
         echo("</tr>");
     }
 
-    private function renderDates(Month $month)
+    public function renderDates()
     {
-        $this->renderRowStart();
-
-        for ($count = 0; $count < $month->calculateOffsetAtStart($this->days); $count++) {
+        for ($count = 0; $count < $this->month->calculateOffsetAtStart($this->days); $count++) {
             $this->renderEmptyDay();
         }
 
         $day_count = 1;
-        while ($count < ($this->widthRenderedCalendarInDays * $month->calculateNumberOfWeeks($this->days))) {
-            if ($month->beyondEndOfMonth($day_count)) {
+        while ($count < ($this->widthRenderedCalendarInDays * $this->month->calculateNumberOfWeeks($this->days))) {
+            if ($this->month->beyondEndOfMonth($day_count)) {
                 $this->renderEmptyDay();
             } else {
                 $this->renderDay($day_count, $count % $this->widthRenderedCalendarInDays);
@@ -75,7 +72,6 @@ class Calendar
                 $this->renderRowStart();
             }
         }
-        $this->renderRowEnd();
     }
 
     private function renderEmptyDay()
