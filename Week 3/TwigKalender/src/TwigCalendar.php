@@ -20,9 +20,7 @@ class TwigCalendar
     }
 
     public function render() {
-        for ($month_count = 1; $month_count <= 12; $month_count++) {
-            $this->calendar->renderMonth($this->month);
-            $this->month = $this->month->next();
-        }
+        $this->calendar->renderMonth($this->month);
+        $this->month = $this->month->next();
     }
 }
