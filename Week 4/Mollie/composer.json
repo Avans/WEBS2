@@ -1,0 +1,11 @@
+{
+  "authors": [
+    {
+      "name": "Rik Meijer",
+      "email": "ha.meijer@avans.nl"
+    }
+  ],
+  "require": {
+    "mollie/mollie-api-php": "^2.0"
+  }
+}
