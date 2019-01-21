@@ -1,0 +1,12 @@
+{
+    "name": "hameijer/google-drive",
+    "require": {
+        "php": ">=5.4"
+    },
+    "authors": [
+        {
+            "name": "Rik Meijer",
+            "email": "ha.meijer@avans.nl"
+        }
+    ]
+}
