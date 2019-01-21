@@ -4,5 +4,11 @@
     },
     "autoload": {
         "psr-4": {"Calendar\\": "src/"}
-    }
+    },
+    "authors": [
+        {
+            "name": "Rik Meijer",
+            "email": "ha.meijer@avans.nl"
+        }
+    ]
 }

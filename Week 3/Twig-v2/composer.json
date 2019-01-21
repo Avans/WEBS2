@@ -1,5 +1,11 @@
 {
     "require": {
         "twig/twig": "^2.0"
-    }
+    },
+    "authors": [
+        {
+            "name": "Rik Meijer",
+            "email": "ha.meijer@avans.nl"
+        }
+    ]
 }

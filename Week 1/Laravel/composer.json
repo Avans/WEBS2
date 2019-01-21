@@ -58,5 +58,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    }
+    },
+    "authors": [
+        {
+            "name": "Rik Meijer",
+            "email": "ha.meijer@avans.nl"
+        }
+    ]
 }

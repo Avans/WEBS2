@@ -6,5 +6,11 @@
         "classmap": [
             "src/"
         ]
-    }
+    },
+    "authors": [
+        {
+            "name": "Rik Meijer",
+            "email": "ha.meijer@avans.nl"
+        }
+    ]
 }
