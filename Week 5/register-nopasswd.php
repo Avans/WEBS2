@@ -67,7 +67,7 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
     if (count($errors) > 0) {
         renderForm($errors);
     } else {
-        file_put_contents(sys_get_temp_dir() . DIRECTORY_SEPARATOR . $_POST['email'] . '.json', json_encode($_POST));
+        file_put_contents(sys_get_temp_dir() . DIRECTORY_SEPARATOR . str_replace([DIRECTORY_SEPARATOR, '/'], '_', $_POST['naam']) . '.json', json_encode($_POST));
         ?>Dankjewel, <?=htmlentities($_POST['naam']);?> voor jouw registratie!<?php
     }
 
