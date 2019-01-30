@@ -11,7 +11,7 @@ function renderInput($name, $type, $placeholder) {
 
 function renderForm(array $errors) {
 ?>
-<form action="register.php" method="POST">
+<form action="register-nopasswd.php" method="POST">
     <label for="naam">* Naam<?php renderError("naam", $errors); ?></label><?php renderInput('naam', 'text', ''); ?><br>
     <label for="email">* E-mailadres<?php renderError("email", $errors); ?></label><?php renderInput('email', 'email', 'user@host.tld'); ?><br>
     <label for="adres">Adres<?php renderError("adres", $errors); ?></label><?php renderInput('adres', 'text', ''); ?><br>
