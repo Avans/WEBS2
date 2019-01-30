@@ -6,7 +6,7 @@ function renderError(string $field, array $errors) {
 }
 
 function renderInput($name, $type, $placeholder) {
-    ?><input type="<?=htmlentities($type);?>" placeholder="<?=$placeholder;?>" name="naam"<?=filter_has_var(INPUT_POST, $name)?' value="' . htmlentities($_POST[$name]) . '"':'';?>><?php
+    ?><input type="<?=htmlentities($type);?>" placeholder="<?=htmlentities($placeholder);?>" name="<?=htmlentities($name);?>"<?=filter_has_var(INPUT_POST, $name)?' value="' . htmlentities($_POST[$name]) . '"':'';?>><?php
 }
 
 function renderForm(array $errors) {
