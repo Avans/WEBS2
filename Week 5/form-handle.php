@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>voorbeeld.php</title>
 </head>

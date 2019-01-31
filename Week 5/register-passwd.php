@@ -25,6 +25,7 @@ function renderForm(array $errors) {
 <?php
 }
 ?><!DOCTYPE html>
+<html>
 <head>
     <title>Registreer account</title>
     <style type="text/css">

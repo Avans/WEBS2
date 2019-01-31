@@ -19,6 +19,7 @@ function renderForm(array $errors) {
 <?php
 }
 ?><!DOCTYPE html>
+<html>
 <head>
     <title>Login</title>
     <style type="text/css">
