@@ -56,10 +56,21 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
         $errors["email"] = "E-mail is onjuist!";
     }
 
+    $dataFilename = sys_get_temp_dir() . DIRECTORY_SEPARATOR . str_replace([DIRECTORY_SEPARATOR, '/'], '_', $_POST['email']) . '.json';
+    if (file_exists($dataFilename)) {
+        $storedValues = json_decode(file_get_contents($dataFilename), true);
+    } else {
+        $storedValues = null;
+    }
+
     if (filter_has_var(INPUT_POST, 'password') === false) {
         $errors["password"] = "Wachtwoord is verplicht!";
     } elseif (filter_input(INPUT_POST, 'password', FILTER_DEFAULT) === "") {
         $errors["password"] = "Wachtwoord is verplicht!";
+    } elseif (is_null($storedValues)) {
+        // new user
+    } elseif (password_verify($_POST['password'], $storedValues['password']) === false) {
+        $errors["password"] = "Opgegeven wachtwoord is onjuist.";
     }
 
     if (filter_has_var(INPUT_POST, 'url') === false) {
@@ -70,12 +81,13 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
         $errors["url"] = "Online profiel is onjuist!";
     }
 
+
     if (count($errors) > 0) {
         renderForm($errors);
     } else {
         $values = $_POST;
         $values['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
-        file_put_contents(sys_get_temp_dir() . DIRECTORY_SEPARATOR . str_replace([DIRECTORY_SEPARATOR, '/'], '_', $_POST['email']) . '.json', json_encode($values));
+        file_put_contents($dataFilename, json_encode($values));
         ?>Dankjewel, <?=htmlentities($_POST['naam']);?> voor jouw registratie!<?php
     }
 } else {
