@@ -11,7 +11,7 @@ function renderInput($name, $type, $placeholder) {
 
 function renderForm(array $errors) {
 ?>
-<form action="register-passwd.php" method="POST" enctype="multipart/form-data">
+<form action="register-upload.php" method="POST" enctype="multipart/form-data">
     <label for="naam">* Naam<?php renderError("naam", $errors); ?></label><?php renderInput('naam', 'text', ''); ?><br>
     <label for="email">* E-mailadres<?php renderError("email", $errors); ?></label><?php renderInput('email', 'email', 'user@host.tld'); ?><br>
     <label for="password">* Wachtwoord<?php renderError("password", $errors); ?></label><?php renderInput('password', 'password', ''); ?><br>
