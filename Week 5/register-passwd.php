@@ -84,7 +84,11 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
     }
 
     $uploadSuccess = null;
-    if (is_uploaded_file($_FILES['avatar']['tmp_name'])) {
+    if (array_key_exists('avatar', $_FILES) === false) {
+        // no upload
+    } elseif ($_FILES['avatar']['error'] !== UPLOAD_ERR_OK) {
+        $errors['avatar'] = 'Uploaden van bestand mislukt';
+    } elseif (is_uploaded_file($_FILES['avatar']['tmp_name'])) {
         $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'files';
         if (is_dir($uploadDir) === false) {
             mkdir($uploadDir);
