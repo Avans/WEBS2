@@ -19,7 +19,7 @@ function renderForm(array $errors) {
     <label for="postcode">Postcode<?php renderError("postcode", $errors); ?></label><?php renderInput('postcode', 'text', ''); ?><br>
     <label for="woonplaats">Woonplaats<?php renderError("woonplaats", $errors); ?></label><?php renderInput('woonplaats', 'text', ''); ?><br>
     <label for="url">* Online Profile<?php renderError("url", $errors); ?></label><?php renderInput('url', 'url', 'https://example.com'); ?><br>
-    <label for="avatar">* Avatar<?php renderError("avatar", $errors); ?></label><?php renderInput('avatar', 'file', '*.png, *.jpg'); ?><br>
+    <label for="avatar">Avatar<?php renderError("avatar", $errors); ?></label><?php renderInput('avatar', 'file', '*.png, *.jpg'); ?><br>
     <p>Velden met een * zijn verplicht.</p>
     <input type="submit" name="verzenden" value="Registreer">
 </form>
@@ -86,6 +86,8 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
     $uploadSuccess = null;
     if (array_key_exists('avatar', $_FILES) === false) {
         // no upload
+    } elseif ($_FILES['avatar']['error'] === UPLOAD_ERR_NO_FILE) {
+        // no file uploaded
     } elseif ($_FILES['avatar']['error'] !== UPLOAD_ERR_OK) {
         $errors['avatar'] = 'Uploaden van bestand mislukt';
     } elseif (is_uploaded_file($_FILES['avatar']['tmp_name'])) {
