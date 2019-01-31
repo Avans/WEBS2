@@ -1,0 +1,12 @@
+{
+    "name": "hameijer/encryption",
+    "require": {
+        "defuse/php-encryption": "^2.2"
+    },
+    "authors": [
+        {
+            "name": "Rik Meijer",
+            "email": "ha.meijer@avans.nl"
+        }
+    ]
+}
