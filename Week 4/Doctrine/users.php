@@ -19,8 +19,19 @@ try {
 }
 
 print '<br />' . 'Gebruikers presenteren via Doctrine Entities:';
-foreach ($result as $object)  {
-    echo '<br />' . $object->getGebVoornaam() . ' ' . $object->getGebAchternaam();
+/**
+ * @var $user WsphpGebruikers
+ */
+foreach ($result as $user)  {
+    $voornaam = $user->getGebVoornaam();
+    echo '<br />' . $voornaam . ' ' . $user->getGebAchternaam();
+    if (substr($voornaam, 0, 4) === 'EDIT') {
+        $user->setGebVoornaam(substr($user->getGebVoornaam(), 5));
+    } else {
+        $user->setGebVoornaam('EDIT ' . $user->getGebVoornaam());
+    }
+    $entityManager->persist($user);
 }
+$entityManager->flush();
 
 $entityManager->close();
