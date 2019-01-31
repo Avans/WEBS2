@@ -11,7 +11,7 @@ function renderInput($name, $type, $placeholder) {
 
 function renderForm(array $errors) {
 ?>
-<form action="register-passwd.php" method="POST" enctype="multipart/form-data">
+<form action="register-passwd.php" method="POST">
     <label for="naam">* Naam<?php renderError("naam", $errors); ?></label><?php renderInput('naam', 'text', ''); ?><br>
     <label for="email">* E-mailadres<?php renderError("email", $errors); ?></label><?php renderInput('email', 'email', 'user@host.tld'); ?><br>
     <label for="password">* Wachtwoord<?php renderError("password", $errors); ?></label><?php renderInput('password', 'password', ''); ?><br>
@@ -19,7 +19,6 @@ function renderForm(array $errors) {
     <label for="postcode">Postcode<?php renderError("postcode", $errors); ?></label><?php renderInput('postcode', 'text', ''); ?><br>
     <label for="woonplaats">Woonplaats<?php renderError("woonplaats", $errors); ?></label><?php renderInput('woonplaats', 'text', ''); ?><br>
     <label for="url">* Online Profile<?php renderError("url", $errors); ?></label><?php renderInput('url', 'url', 'https://example.com'); ?><br>
-    <label for="avatar">* Avatar<?php renderError("avatar", $errors); ?></label><?php renderInput('avatar', 'file', '*.png, *.jpg'); ?><br>
     <p>Velden met een * zijn verplicht.</p>
     <input type="submit" name="verzenden" value="Registreer">
 </form>
@@ -42,7 +41,6 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
     renderForm([]);
 } elseif (strcasecmp($_SERVER['REQUEST_METHOD'], 'post') === 0) {
     $errors = [];
-    $values = $_POST;
 
     if (filter_has_var(INPUT_POST, 'naam') === false) {
         $errors["naam"] = "Naam is verplicht!";
@@ -83,26 +81,14 @@ if (strcasecmp($_SERVER['REQUEST_METHOD'], 'get') === 0) {
         $errors["url"] = "Online profiel is onjuist!";
     }
 
-    $uploadSuccess = null;
-    if (is_uploaded_file($_FILES['avatar']['tmp_name'])) {
-        $uploadDir = __DIR__ . DIRECTORY_SEPARATOR . 'files';
-        if (is_dir($uploadDir) === false) {
-            mkdir($uploadDir);
-        }
-        $uploadFilename = $uploadDir . DIRECTORY_SEPARATOR . basename($_FILES['avatar']['name']);
-        $uploadSuccess = move_uploaded_file($_FILES['avatar']['tmp_name'], $uploadFilename);
-        $values['avatar'] = $uploadFilename;
-    }
 
     if (count($errors) > 0) {
         renderForm($errors);
     } else {
+        $values = $_POST;
         $values['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
         file_put_contents($dataFilename, json_encode($values));
-        ?>Dankjewel, <?=htmlentities($_POST['naam']);?> voor jouw registratie!<br><?php
-        if ($uploadSuccess) {
-            ?>Je foto is ge&uuml;pload!<?php
-        }
+        ?>Dankjewel, <?=htmlentities($_POST['naam']);?> voor jouw registratie!<?php
     }
 } else {
     ?>Onbekende actie<?php
