@@ -13,6 +13,7 @@ if (!$userInfo) {
 <html>
 <body class="home">
 <div><?php echo $userInfo['name'] ?></div>
+    <a class="btn btn-primary btn-lg btn-login btn-block" href="logout.php">Logout</a>
 </body>
 </html>
 <?php
