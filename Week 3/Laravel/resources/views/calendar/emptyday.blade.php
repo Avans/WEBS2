@@ -1,1 +1,0 @@
-<td class="calendar_entry"></td>
