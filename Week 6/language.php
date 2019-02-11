@@ -9,8 +9,9 @@ $translations = [
     'de' => 'Guten Tag!',
     'fr' => 'Bonjour!'
 ];
-if (array_key_exists($negotiatedLanguage, $translations) === false) {
-    echo $translations[$translations[0]];
-} else {
-    echo $translations[$negotiatedLanguage];
+if ($negotiatedLanguage === null) {
+    $negotiatedLanguage = $translations[0];
+} elseif (array_key_exists($negotiatedLanguage, $translations) === false) {
+    $negotiatedLanguage = $translations[0];
 }
+echo $translations[$negotiatedLanguage];
