@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-02-11 14:50+0100\n"
-"PO-Revision-Date: 2019-02-11 15:08+0100\n"
+"POT-Creation-Date: 2019-02-12 14:32+0100\n"
+"PO-Revision-Date: 2019-02-12 14:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_NL\n"
@@ -10,11 +10,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.2.1\n"
-"X-Poedit-Basepath: ..\n"
+"X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: locale.php\n"
-"X-Poedit-SearchPath-1: i18n_setup.php\n"
 
-#: locale.php:7
+#: locale.php:8
 msgid "Welcome"
 msgstr "Welkom"
+
+#: locale.php:9
+msgid "This is an awesome translation"
+msgstr "Dit is een geweldige vertaling"
