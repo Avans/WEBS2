@@ -14,7 +14,7 @@ function _($str) {
     return \_($str);
 }
 
-$locales = ['nl' => 'nl_NL.UTF8', 'en' => 'en_US.UTF8'];
+$locales = ['nl' => 'nl_NL.UTF8', 'en' => 'en_US.UTF8', 'de' => 'de_DE.UTF8'];
 
 $negotiatedLocale = \Locale::acceptFromHttp($_SERVER['HTTP_ACCEPT_LANGUAGE']);
 $lang = \Locale::lookup(array_keys($locales), $negotiatedLocale, true, 'nl');
@@ -23,7 +23,7 @@ if ($lang === '') {
 }
 $locale = $locales[$lang];
 if (defined('LC_MESSAGES')) { // linux
-    setlocale(LC_ALL, $locale);
+    setlocale(LC_MESSAGES, $locale);
 } else { // windows
     putenv("LC_ALL=$locale");
     putenv("LANG=$locale");
