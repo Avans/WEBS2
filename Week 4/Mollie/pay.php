@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     exit;
 }
 
-// create a php file return the API key as string
+// For this to work: create a php file (apikey.php) which returns the API key as string
 $apikey = require __DIR__ . DIRECTORY_SEPARATOR . 'apikey.php';
 
 $mollie = new \Mollie\Api\MollieApiClient();
