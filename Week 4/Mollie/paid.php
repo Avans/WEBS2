@@ -20,6 +20,7 @@ $payment = $mollie->payments->get($payment_id);
 
 if ($payment->isPaid())
 {
+    var_dump($payment->details);
     exit("Payment received.");
 }
 exit("Something went wrong, please try again.");
